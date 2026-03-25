@@ -1,0 +1,3409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sapphire Farms — Live Menu</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #222; line-height: 1.5; }
+
+    /* HEADER */
+    .site-header { background: #0d0d0d; color: #fff; padding: 32px 24px 24px; text-align: center; }
+    .site-title { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; }
+    .site-sub { color: #aaa; font-size: 0.95rem; margin-top: 4px; }
+    .site-nav { margin-top: 16px; font-size: 0.95rem; }
+    .site-nav a { text-decoration: none; font-weight: 600; }
+    .updated-badge { display: inline-block; margin-top: 12px; background: #1a1a1a; border: 1px solid #333; color: #888; font-size: 0.78rem; padding: 4px 12px; border-radius: 20px; }
+
+    /* TIER BOX */
+    .tier-box { background: #fff; max-width: 860px; margin: 32px auto; padding: 28px 32px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+    .section-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; }
+    .tier-intro { color: #444; margin-bottom: 20px; font-size: 0.95rem; }
+    .tier-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+    .tier-card { text-align: center; padding: 16px 8px; border-radius: 8px; background: #f9f9f9; border: 1px solid #eee; }
+    .tier-label { font-weight: 700; font-size: 1rem; }
+    .tier-desc { font-size: 0.8rem; color: #666; margin-top: 4px; }
+    .t1 .tier-label { color: #888; }
+    .t2 .tier-label { color: #4a90d9; }
+    .t3 .tier-label { color: #4caf72; }
+    .t4 .tier-label { color: #e67e22; }
+    .tier-note { font-size: 0.85rem; color: #555; line-height: 1.6; }
+
+    /* BRAND SECTION */
+    .brand-section { max-width: 860px; margin: 24px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
+    .brand-header { padding: 24px 28px; color: #fff; }
+    .brand-title { font-size: 1.5rem; font-weight: 700; }
+    .brand-tagline { font-size: 0.9rem; opacity: 0.8; margin-top: 4px; }
+    .brand-body { background: #fff; padding: 24px 28px; }
+    .brand-description { color: #555; font-size: 0.92rem; margin-bottom: 24px; line-height: 1.7; border-left: 3px solid #eee; padding-left: 14px; }
+
+    /* CATEGORY */
+    .category-title { font-size: 1rem; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #f0f0f0; }
+    .category-section { margin-bottom: 32px; }
+    .category-section:last-child { margin-bottom: 0; }
+
+    /* PRODUCT GRID */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+    .product-card { background: #fafafa; border: 1px solid #e8e8e8; border-radius: 10px; overflow: hidden; }
+    .product-header { padding: 14px 16px 10px; background: #f3f3f3; }
+    .product-name { font-weight: 700; font-size: 0.97rem; color: #111; }
+    .product-meta { font-size: 0.78rem; color: #666; margin-top: 3px; }
+    .thc-badge { display: inline-block; background: #e8f5e9; color: #2e7d32; font-size: 0.72rem; font-weight: 700; padding: 2px 7px; border-radius: 10px; margin-left: 6px; }
+    .product-body { padding: 12px 16px 14px; }
+
+    /* PRICE TABLE */
+    .price-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-bottom: 10px; }
+    .price-row { display: grid; grid-template-columns: 36px 1fr 1fr; gap: 4px; padding: 4px 0; border-bottom: 1px solid #f0f0f0; }
+    .price-row:last-child { border-bottom: none; }
+    .header-row { font-weight: 700; font-size: 0.75rem; color: #999; text-transform: uppercase; letter-spacing: 0.3px; }
+    .price-cell { text-align: right; }
+    .label-cell { text-align: left; font-weight: 700; font-size: 0.78rem; }
+    .label-cell.t1 { color: #888; }
+    .label-cell.t2 { color: #4a90d9; }
+    .label-cell.t3 { color: #4caf72; }
+    .label-cell.t4 { color: #e67e22; }
+    .stock-badge { font-size: 0.75rem; color: #888; background: #f0f0f0; padding: 3px 8px; border-radius: 10px; }
+
+    /* CTA */
+    .cta-section { max-width: 860px; margin: 32px auto 48px; background: #0d0d0d; color: #fff; border-radius: 12px; padding: 36px 32px; text-align: center; }
+    .cta-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
+    .cta-sub { color: #aaa; font-size: 0.95rem; margin-bottom: 24px; }
+    .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cta-btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.95rem; }
+    .cta-btn-primary { background: #fff; color: #0d0d0d; }
+    .cta-btn-secondary { background: transparent; color: #fff; border: 2px solid #444; }
+    .cta-btn:hover { opacity: 0.85; }
+
+    /* FOOTER */
+    footer { text-align: center; color: #aaa; font-size: 0.8rem; padding: 24px; }
+
+    @media (max-width: 600px) {
+      .tier-grid { grid-template-columns: repeat(2, 1fr); }
+      .brand-body { padding: 20px 16px; }
+      .cta-section { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-title">Sapphire Farms</div>
+  <div class="site-sub">NY Metro + Long Island · Premium Cannabis</div>
+  <nav class="site-nav"><a href="#sapphire" style="color:#4a90d9">Sapphire</a> · <a href="#leal" style="color:#4caf72">Leal</a> · <a href="#goodlyfe" style="color:#b06eb0">GoodLyfe</a> · <a href="#choclit" style="color:#c47a2b">ChocLit</a></nav>
+  <div class="updated-badge">Last updated: March 25, 2026</div>
+</header>
+
+
+<div class="tier-box">
+  <h2 class="section-title">📊 How Tier Pricing Works</h2>
+  <p class="tier-intro">We use a volume-based tier system across all brands. Your tier is determined by how many <strong>product categories</strong> you carry from us within a 30-day window.</p>
+  <div class="tier-grid">
+    <div class="tier-card t1">
+      <div class="tier-label">Tier 1</div>
+      <div class="tier-desc">1 Category</div>
+    </div>
+    <div class="tier-card t2">
+      <div class="tier-label">Tier 2</div>
+      <div class="tier-desc">2 Categories</div>
+    </div>
+    <div class="tier-card t3">
+      <div class="tier-label">Tier 3</div>
+      <div class="tier-desc">3 Categories</div>
+    </div>
+    <div class="tier-card t4">
+      <div class="tier-label">Tier 4</div>
+      <div class="tier-desc">4+ Categories</div>
+    </div>
+  </div>
+  <p class="tier-note">Categories: <strong>Flower · Pre-Roll · Infused Pre-Roll · Vape · Chocolate</strong><br>
+  The more categories you carry, the better your per-unit and per-case pricing across the board.<br>
+  <em>Partial case pricing = full case rate × 1.07 (7% premium for splitting a case).</em></p>
+</div>
+
+
+
+        <section class="brand-section" id="sapphire">
+          <div class="brand-header" style="background: #1a3a5c">
+            <div class="brand-title">💎 Sapphire</div>
+            <div class="brand-tagline">Premium Vapes — AIOs & 510 Carts</div>
+          </div>
+          <div class="brand-body">
+            <p class="brand-description">Sapphire delivers a clean, consistent vape experience built for the modern New York market. Our all-in-one devices and 510-thread carts come in a range of strains, purpose-built for shelf performance and repeat purchase.</p>
+            
+            <div class="category-section">
+              <h3 class="category-title">510 Thread Cart</h3>
+              <div class="product-grid">
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Alien OG</div>
+        <div class="product-meta">1g 510 Thread Vape Carts <span class="thc-badge">THC 93.09%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (30u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$17.00</div>
+              <div class="price-cell">$510.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$16.50</div>
+              <div class="price-cell">$495.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$16.00</div>
+              <div class="price-cell">$480.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$15.00</div>
+              <div class="price-cell">$450.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2799 units · 93.3 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Gorilla Glue #4</div>
+        <div class="product-meta">1g 510 Thread Vape Carts <span class="thc-badge">THC 94.69%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (30u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$17.00</div>
+              <div class="price-cell">$510.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$16.50</div>
+              <div class="price-cell">$495.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$16.00</div>
+              <div class="price-cell">$480.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$15.00</div>
+              <div class="price-cell">$450.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">3048 units · 101.6 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Laughing Buddha</div>
+        <div class="product-meta">1g 510 Thread Vape Carts <span class="thc-badge">THC 90.52%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (30u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$17.00</div>
+              <div class="price-cell">$510.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$16.50</div>
+              <div class="price-cell">$495.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$16.00</div>
+              <div class="price-cell">$480.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$15.00</div>
+              <div class="price-cell">$450.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">4088 units · 136.27 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">NYC Diesel</div>
+        <div class="product-meta">1g 510 Thread Vape Carts <span class="thc-badge">THC 88.14%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (30u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$17.00</div>
+              <div class="price-cell">$510.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$16.50</div>
+              <div class="price-cell">$495.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$16.00</div>
+              <div class="price-cell">$480.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$15.00</div>
+              <div class="price-cell">$450.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">761 units · 25.37 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Super Sour Diesel</div>
+        <div class="product-meta">1g 510 Thread Vape Carts <span class="thc-badge">THC 88.32%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (30u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$17.00</div>
+              <div class="price-cell">$510.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$16.50</div>
+              <div class="price-cell">$495.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$16.00</div>
+              <div class="price-cell">$480.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$15.00</div>
+              <div class="price-cell">$450.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">3486 units · 116.2 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Tangie Dream</div>
+        <div class="product-meta">1g 510 Thread Vape Carts <span class="thc-badge">THC 93.52%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (30u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$17.00</div>
+              <div class="price-cell">$510.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$16.50</div>
+              <div class="price-cell">$495.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$16.00</div>
+              <div class="price-cell">$480.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$15.00</div>
+              <div class="price-cell">$450.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2543 units · 84.77 cases</span>
+        </div>
+      </div>
+    </div></div>
+            </div>
+            <div class="category-section">
+              <h3 class="category-title">AIO Disposable</h3>
+              <div class="product-grid">
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Blue Dream</div>
+        <div class="product-meta">1g AIO Disposables <span class="thc-badge">THC 94.10%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (30u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$20.00</div>
+              <div class="price-cell">$600.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$19.50</div>
+              <div class="price-cell">$585.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$19.00</div>
+              <div class="price-cell">$570.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$18.00</div>
+              <div class="price-cell">$540.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2195 units · 73.17 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Galactic Gas</div>
+        <div class="product-meta">1g AIO Disposables <span class="thc-badge">THC 91.75%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (30u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$20.00</div>
+              <div class="price-cell">$600.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$19.50</div>
+              <div class="price-cell">$585.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$19.00</div>
+              <div class="price-cell">$570.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$18.00</div>
+              <div class="price-cell">$540.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">291 units · 9.7 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Gorilla Glue #4</div>
+        <div class="product-meta">1g AIO Disposables <span class="thc-badge">THC 92.32%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (30u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$20.00</div>
+              <div class="price-cell">$600.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$19.50</div>
+              <div class="price-cell">$585.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$19.00</div>
+              <div class="price-cell">$570.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$18.00</div>
+              <div class="price-cell">$540.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">3783 units · 126.1 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Pink Rozay</div>
+        <div class="product-meta">1g AIO Disposables <span class="thc-badge">THC 89.51%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (30u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$20.00</div>
+              <div class="price-cell">$600.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$19.50</div>
+              <div class="price-cell">$585.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$19.00</div>
+              <div class="price-cell">$570.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$18.00</div>
+              <div class="price-cell">$540.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">694 units · 23.13 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Raspberry Kush</div>
+        <div class="product-meta">1g AIO Disposables <span class="thc-badge">THC 95.66%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (30u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$20.00</div>
+              <div class="price-cell">$600.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$19.50</div>
+              <div class="price-cell">$585.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$19.00</div>
+              <div class="price-cell">$570.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$18.00</div>
+              <div class="price-cell">$540.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">3145 units · 104.83 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Super Sour Diesel</div>
+        <div class="product-meta">1g AIO Disposables <span class="thc-badge">THC 95.02%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (30u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$20.00</div>
+              <div class="price-cell">$600.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$19.50</div>
+              <div class="price-cell">$585.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$19.00</div>
+              <div class="price-cell">$570.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$18.00</div>
+              <div class="price-cell">$540.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">924 units · 30.8 cases</span>
+        </div>
+      </div>
+    </div></div>
+            </div>
+          </div>
+        </section>
+        <section class="brand-section" id="leal">
+          <div class="brand-header" style="background: #1a4a2e">
+            <div class="brand-title">🌿 Leal</div>
+            <div class="brand-tagline">Premium Flower & Pre-Rolls</div>
+          </div>
+          <div class="brand-body">
+            <p class="brand-description">Leal is our flagship flower and pre-roll brand — single-strain, lab-tested, and grown for consistency. Available in 1/8oz, 1/4oz, and 1oz formats, plus 1g pre-rolls in the strains your customers keep asking for.</p>
+            
+            <div class="category-section">
+              <h3 class="category-title">Flower</h3>
+              <div class="product-grid">
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Animal Face</div>
+        <div class="product-meta">1/4oz Packaged Flower <span class="thc-badge">THC 25.22%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$24.00</div>
+              <div class="price-cell">$1200.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$23.85</div>
+              <div class="price-cell">$1192.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$23.65</div>
+              <div class="price-cell">$1182.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$23.50</div>
+              <div class="price-cell">$1175.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">3249 units · 64.98 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Animal Face</div>
+        <div class="product-meta">1oz Packaged Flower <span class="thc-badge">THC 34.26%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (16u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$80.00</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$79.00</div>
+              <div class="price-cell">$1264.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$78.00</div>
+              <div class="price-cell">$1248.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$77.00</div>
+              <div class="price-cell">$1232.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2055 units · 128.44 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Chronic Tonic</div>
+        <div class="product-meta">1/8oz Packaged Flower <span class="thc-badge">THC 26.39%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$13.00</div>
+              <div class="price-cell">$1300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$12.90</div>
+              <div class="price-cell">$1290.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$12.80</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$12.70</div>
+              <div class="price-cell">$1270.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1956 units · 19.56 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Chronic Tonic</div>
+        <div class="product-meta">1/4oz Packaged Flower <span class="thc-badge">THC 31.88%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$24.00</div>
+              <div class="price-cell">$1200.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$23.85</div>
+              <div class="price-cell">$1192.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$23.65</div>
+              <div class="price-cell">$1182.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$23.50</div>
+              <div class="price-cell">$1175.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">3609 units · 72.18 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Garlic Budder</div>
+        <div class="product-meta">1oz Packaged Flower <span class="thc-badge">THC 31.35%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (16u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$80.00</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$79.00</div>
+              <div class="price-cell">$1264.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$78.00</div>
+              <div class="price-cell">$1248.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$77.00</div>
+              <div class="price-cell">$1232.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2301 units · 143.81 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Gorilla Zkittlez</div>
+        <div class="product-meta">1/8oz Packaged Flower <span class="thc-badge">THC 26.12%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$13.00</div>
+              <div class="price-cell">$1300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$12.90</div>
+              <div class="price-cell">$1290.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$12.80</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$12.70</div>
+              <div class="price-cell">$1270.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">4140 units · 41.4 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Grape Cake</div>
+        <div class="product-meta">1/8oz Packaged Flower <span class="thc-badge">THC 25.61%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$13.00</div>
+              <div class="price-cell">$1300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$12.90</div>
+              <div class="price-cell">$1290.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$12.80</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$12.70</div>
+              <div class="price-cell">$1270.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">3548 units · 35.48 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Grape Cake</div>
+        <div class="product-meta">1oz Packaged Flower <span class="thc-badge">THC 30.65%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (16u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$80.00</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$79.00</div>
+              <div class="price-cell">$1264.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$78.00</div>
+              <div class="price-cell">$1248.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$77.00</div>
+              <div class="price-cell">$1232.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1758 units · 109.88 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Hella Jelly</div>
+        <div class="product-meta">1/8oz Packaged Flower <span class="thc-badge">THC 29.10%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$13.00</div>
+              <div class="price-cell">$1300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$12.90</div>
+              <div class="price-cell">$1290.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$12.80</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$12.70</div>
+              <div class="price-cell">$1270.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2 units · 0.02 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Hella Jelly</div>
+        <div class="product-meta">1/4oz Packaged Flower <span class="thc-badge">THC 31.05%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$24.00</div>
+              <div class="price-cell">$1200.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$23.85</div>
+              <div class="price-cell">$1192.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$23.65</div>
+              <div class="price-cell">$1182.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$23.50</div>
+              <div class="price-cell">$1175.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">3780 units · 75.6 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Hella Jelly</div>
+        <div class="product-meta">1/8oz Packaged Flower <span class="thc-badge">THC 31.06%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$13.00</div>
+              <div class="price-cell">$1300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$12.90</div>
+              <div class="price-cell">$1290.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$12.80</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$12.70</div>
+              <div class="price-cell">$1270.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">9747 units · 97.47 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Hella Jelly</div>
+        <div class="product-meta">1oz Packaged Flower <span class="thc-badge">THC 32.08%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (16u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$80.00</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$79.00</div>
+              <div class="price-cell">$1264.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$78.00</div>
+              <div class="price-cell">$1248.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$77.00</div>
+              <div class="price-cell">$1232.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1409 units · 88.06 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Jungle Gemz</div>
+        <div class="product-meta">1/4oz Packaged Flower <span class="thc-badge">THC 27.52%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$24.00</div>
+              <div class="price-cell">$1200.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$23.85</div>
+              <div class="price-cell">$1192.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$23.65</div>
+              <div class="price-cell">$1182.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$23.50</div>
+              <div class="price-cell">$1175.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">3850 units · 77 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Jungle Gemz</div>
+        <div class="product-meta">1/8oz Packaged Flower <span class="thc-badge">THC 30.38%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$13.00</div>
+              <div class="price-cell">$1300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$12.90</div>
+              <div class="price-cell">$1290.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$12.80</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$12.70</div>
+              <div class="price-cell">$1270.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">4200 units · 42 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Jungle Gemz</div>
+        <div class="product-meta">1oz Packaged Flower <span class="thc-badge">THC 31.86%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (16u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$80.00</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$79.00</div>
+              <div class="price-cell">$1264.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$78.00</div>
+              <div class="price-cell">$1248.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$77.00</div>
+              <div class="price-cell">$1232.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2400 units · 150 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Kush Cake</div>
+        <div class="product-meta">1oz Packaged Flower <span class="thc-badge">THC 29.79%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (16u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$80.00</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$79.00</div>
+              <div class="price-cell">$1264.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$78.00</div>
+              <div class="price-cell">$1248.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$77.00</div>
+              <div class="price-cell">$1232.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1505 units · 94.06 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Kush Cake</div>
+        <div class="product-meta">1/8oz Packaged Flower <span class="thc-badge">THC 30.06%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$13.00</div>
+              <div class="price-cell">$1300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$12.90</div>
+              <div class="price-cell">$1290.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$12.80</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$12.70</div>
+              <div class="price-cell">$1270.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1692 units · 16.92 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Kush Cake</div>
+        <div class="product-meta">1/4oz Packaged Flower <span class="thc-badge">THC 35.27%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$24.00</div>
+              <div class="price-cell">$1200.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$23.85</div>
+              <div class="price-cell">$1192.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$23.65</div>
+              <div class="price-cell">$1182.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$23.50</div>
+              <div class="price-cell">$1175.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">4290 units · 85.8 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Nic The Bruiser</div>
+        <div class="product-meta">1/8oz Packaged Flower <span class="thc-badge">THC 31.04%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$13.00</div>
+              <div class="price-cell">$1300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$12.90</div>
+              <div class="price-cell">$1290.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$12.80</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$12.70</div>
+              <div class="price-cell">$1270.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1885 units · 18.85 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Nic The Bruiser</div>
+        <div class="product-meta">1/4oz Packaged Flower <span class="thc-badge">THC 32.40%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$24.00</div>
+              <div class="price-cell">$1200.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$23.85</div>
+              <div class="price-cell">$1192.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$23.65</div>
+              <div class="price-cell">$1182.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$23.50</div>
+              <div class="price-cell">$1175.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1815 units · 36.3 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Nic The Bruiser</div>
+        <div class="product-meta">1oz Packaged Flower <span class="thc-badge">THC 33.98%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (16u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$80.00</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$79.00</div>
+              <div class="price-cell">$1264.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$78.00</div>
+              <div class="price-cell">$1248.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$77.00</div>
+              <div class="price-cell">$1232.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1834 units · 114.62 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Platinum Lemon Cherry Gelato</div>
+        <div class="product-meta">1/4oz Packaged Flower <span class="thc-badge">THC 31.99%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$24.00</div>
+              <div class="price-cell">$1200.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$23.85</div>
+              <div class="price-cell">$1192.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$23.65</div>
+              <div class="price-cell">$1182.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$23.50</div>
+              <div class="price-cell">$1175.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">5522 units · 110.44 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Platinum Lemon Cherry Gelato</div>
+        <div class="product-meta">1/8oz Packaged Flower <span class="thc-badge">THC 33.30%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$13.00</div>
+              <div class="price-cell">$1300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$12.90</div>
+              <div class="price-cell">$1290.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$12.80</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$12.70</div>
+              <div class="price-cell">$1270.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">600 units · 6 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Stank Breath</div>
+        <div class="product-meta">1/8oz Packaged Flower <span class="thc-badge">THC 24.41%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$13.00</div>
+              <div class="price-cell">$1300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$12.90</div>
+              <div class="price-cell">$1290.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$12.80</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$12.70</div>
+              <div class="price-cell">$1270.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1665 units · 16.65 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Stank Breath</div>
+        <div class="product-meta">1/4oz Packaged Flower <span class="thc-badge">THC 34.67%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$24.00</div>
+              <div class="price-cell">$1200.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$23.85</div>
+              <div class="price-cell">$1192.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$23.65</div>
+              <div class="price-cell">$1182.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$23.50</div>
+              <div class="price-cell">$1175.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1430 units · 28.6 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Stank Breath</div>
+        <div class="product-meta">1oz Packaged Flower <span class="thc-badge">THC 34.99%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (16u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$80.00</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$79.00</div>
+              <div class="price-cell">$1264.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$78.00</div>
+              <div class="price-cell">$1248.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$77.00</div>
+              <div class="price-cell">$1232.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1934 units · 120.88 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Super Boof</div>
+        <div class="product-meta">1/8oz Packaged Flower <span class="thc-badge">THC 24.15%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$13.00</div>
+              <div class="price-cell">$1300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$12.90</div>
+              <div class="price-cell">$1290.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$12.80</div>
+              <div class="price-cell">$1280.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$12.70</div>
+              <div class="price-cell">$1270.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">3969 units · 39.69 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Super Boof</div>
+        <div class="product-meta">1/4oz Packaged Flower <span class="thc-badge">THC 30.41%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$24.00</div>
+              <div class="price-cell">$1200.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$23.85</div>
+              <div class="price-cell">$1192.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$23.65</div>
+              <div class="price-cell">$1182.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$23.50</div>
+              <div class="price-cell">$1175.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">4161 units · 83.22 cases</span>
+        </div>
+      </div>
+    </div></div>
+            </div>
+            <div class="category-section">
+              <h3 class="category-title">Pre-Roll</h3>
+              <div class="product-grid">
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Biscotti</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 30.91%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">11122 units · 111.22 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Caramel Cream</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 19.62%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">9280 units · 92.8 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Chocolate Berry</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 31.18%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">11781 units · 117.81 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Death Star OG</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 28.26%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">14585 units · 145.85 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Fire OG</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 25.68%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">14105 units · 141.05 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Fortune Cookie</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 25.68%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">3943 units · 39.43 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Garlic Budder</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 32.14%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1 units · 0.01 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Humboldt Headband</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 22.59%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">11877 units · 118.77 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Nic The Bruiser</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 25.17%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">9944 units · 99.44 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">OG Kush</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 30.73%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2200 units · 22 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">OG Kush (7.95% THC & 8.36% CBD)</div>
+        <div class="product-meta">1g Pre-Rolls </div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">100 units · 1 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Platinum Lemon Cherry Gelato</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 28.09%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">7441 units · 74.41 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Royal Highness</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 24.18%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">23723 units · 237.23 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Sharksbreath</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 29.61%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2687 units · 26.87 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Skywalker OG</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 28.08%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2013 units · 20.13 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Snow-G (8.24% THC & 8.45% CBD)</div>
+        <div class="product-meta">1g Pre-Rolls </div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">100 units · 1 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Sour Kush</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 28.69%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">13107 units · 131.07 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Stank Breath</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 26.62%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">9240 units · 92.4 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Sunset Sherbet</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 30.20%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">13322 units · 133.22 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Thin Mint GSC</div>
+        <div class="product-meta">1g Pre-Rolls <span class="thc-badge">THC 28.72%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (100u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$3.75</div>
+              <div class="price-cell">$375.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$3.70</div>
+              <div class="price-cell">$370.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$3.65</div>
+              <div class="price-cell">$365.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$3.55</div>
+              <div class="price-cell">$355.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">45 units · 0.45 cases</span>
+        </div>
+      </div>
+    </div></div>
+            </div>
+            <div class="category-section">
+              <h3 class="category-title">Pre-Roll Multipack</h3>
+              <div class="product-grid">
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Animal Face</div>
+        <div class="product-meta">5g Pre-Roll Multipack <span class="thc-badge">THC 29.66%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (25u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$17.50</div>
+              <div class="price-cell">$437.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$17.25</div>
+              <div class="price-cell">$431.25</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$17.00</div>
+              <div class="price-cell">$425.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$16.75</div>
+              <div class="price-cell">$418.75</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">950 units · 38 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Fortune Cookie</div>
+        <div class="product-meta">5g Pre-Roll Multipack <span class="thc-badge">THC 27.41%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (25u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$17.50</div>
+              <div class="price-cell">$437.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$17.25</div>
+              <div class="price-cell">$431.25</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$17.00</div>
+              <div class="price-cell">$425.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$16.75</div>
+              <div class="price-cell">$418.75</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">3520 units · 140.8 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Garlic Budder</div>
+        <div class="product-meta">5g Pre-Roll Multipack <span class="thc-badge">THC 31.77%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (25u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$17.50</div>
+              <div class="price-cell">$437.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$17.25</div>
+              <div class="price-cell">$431.25</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$17.00</div>
+              <div class="price-cell">$425.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$16.75</div>
+              <div class="price-cell">$418.75</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1831 units · 73.24 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Lemon Venom</div>
+        <div class="product-meta">5g Pre-Roll Multipack <span class="thc-badge">THC 31.09%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (25u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$17.50</div>
+              <div class="price-cell">$437.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$17.25</div>
+              <div class="price-cell">$431.25</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$17.00</div>
+              <div class="price-cell">$425.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$16.75</div>
+              <div class="price-cell">$418.75</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2997 units · 119.88 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Platinum Lemon Cherry Gelato</div>
+        <div class="product-meta">5g Pre-Roll Multipack <span class="thc-badge">THC 29.31%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (25u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$17.50</div>
+              <div class="price-cell">$437.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$17.25</div>
+              <div class="price-cell">$431.25</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$17.00</div>
+              <div class="price-cell">$425.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$16.75</div>
+              <div class="price-cell">$418.75</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2500 units · 100 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Stank Breath</div>
+        <div class="product-meta">5g Pre-Roll Multipack <span class="thc-badge">THC 29.38%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (25u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$17.50</div>
+              <div class="price-cell">$437.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$17.25</div>
+              <div class="price-cell">$431.25</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$17.00</div>
+              <div class="price-cell">$425.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$16.75</div>
+              <div class="price-cell">$418.75</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2149 units · 85.96 cases</span>
+        </div>
+      </div>
+    </div></div>
+            </div>
+          </div>
+        </section>
+        <section class="brand-section" id="goodlyfe">
+          <div class="brand-header" style="background: #4a1a4a">
+            <div class="brand-title">🔥 GoodLyfe</div>
+            <div class="brand-tagline">Infused 1g Pre-Rolls</div>
+          </div>
+          <div class="brand-body">
+            <p class="brand-description">GoodLyfe infused pre-rolls combine premium flower with high-potency concentrate — delivering a next-level experience at an accessible price point. THC percentages regularly hit 35–52%, making these one of the strongest value propositions on the shelf.</p>
+            
+            <div class="category-section">
+              <h3 class="category-title">Infused Pre-Roll</h3>
+              <div class="product-grid">
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">24K Gold Punch</div>
+        <div class="product-meta">INFUSED 1g Pre-Rolls <span class="thc-badge">THC 35.38%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$6.25</div>
+              <div class="price-cell">$312.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$6.00</div>
+              <div class="price-cell">$300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$5.75</div>
+              <div class="price-cell">$287.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$5.50</div>
+              <div class="price-cell">$275.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">6860 units · 137.2 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Blueberry Haze</div>
+        <div class="product-meta">INFUSED 1g Pre-Rolls <span class="thc-badge">THC 39.37%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$6.25</div>
+              <div class="price-cell">$312.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$6.00</div>
+              <div class="price-cell">$300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$5.75</div>
+              <div class="price-cell">$287.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$5.50</div>
+              <div class="price-cell">$275.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">3138 units · 62.76 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Lychee Dream</div>
+        <div class="product-meta">INFUSED 1g Pre-Rolls <span class="thc-badge">THC 49.05%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$6.25</div>
+              <div class="price-cell">$312.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$6.00</div>
+              <div class="price-cell">$300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$5.75</div>
+              <div class="price-cell">$287.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$5.50</div>
+              <div class="price-cell">$275.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">12619 units · 252.38 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Mango Kush</div>
+        <div class="product-meta">INFUSED 1g Pre-Rolls <span class="thc-badge">THC 38.36%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$6.25</div>
+              <div class="price-cell">$312.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$6.00</div>
+              <div class="price-cell">$300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$5.75</div>
+              <div class="price-cell">$287.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$5.50</div>
+              <div class="price-cell">$275.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">5695 units · 113.9 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Papaya Punch</div>
+        <div class="product-meta">INFUSED 1g Pre-Rolls <span class="thc-badge">THC 37.28%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$6.25</div>
+              <div class="price-cell">$312.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$6.00</div>
+              <div class="price-cell">$300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$5.75</div>
+              <div class="price-cell">$287.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$5.50</div>
+              <div class="price-cell">$275.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">6889 units · 137.78 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Raspberry Kush</div>
+        <div class="product-meta">INFUSED 1g Pre-Rolls <span class="thc-badge">THC 47.59%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$6.25</div>
+              <div class="price-cell">$312.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$6.00</div>
+              <div class="price-cell">$300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$5.75</div>
+              <div class="price-cell">$287.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$5.50</div>
+              <div class="price-cell">$275.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">8900 units · 178 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Sour Diesel</div>
+        <div class="product-meta">INFUSED 1g Pre-Rolls <span class="thc-badge">THC 46.94%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$6.25</div>
+              <div class="price-cell">$312.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$6.00</div>
+              <div class="price-cell">$300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$5.75</div>
+              <div class="price-cell">$287.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$5.50</div>
+              <div class="price-cell">$275.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">5892 units · 117.84 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Unicorn Piss</div>
+        <div class="product-meta">INFUSED 1g Pre-Rolls <span class="thc-badge">THC 52.49%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$6.25</div>
+              <div class="price-cell">$312.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$6.00</div>
+              <div class="price-cell">$300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$5.75</div>
+              <div class="price-cell">$287.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$5.50</div>
+              <div class="price-cell">$275.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">5349 units · 106.98 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Watermelon Z</div>
+        <div class="product-meta">INFUSED 1g Pre-Rolls <span class="thc-badge">THC 40.86%</span></div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (50u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$6.25</div>
+              <div class="price-cell">$312.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$6.00</div>
+              <div class="price-cell">$300.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$5.75</div>
+              <div class="price-cell">$287.50</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$5.50</div>
+              <div class="price-cell">$275.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">4616 units · 92.32 cases</span>
+        </div>
+      </div>
+    </div></div>
+            </div>
+          </div>
+        </section>
+        <section class="brand-section" id="choclit">
+          <div class="brand-header" style="background: #3d1f00">
+            <div class="brand-title">🍫 ChocLit</div>
+            <div class="brand-tagline">Premium Cannabis Chocolates</div>
+          </div>
+          <div class="brand-body">
+            <p class="brand-description">ChocLit is our 100mg milk chocolate bar line — consistent dosing, premium ingredients, and a gifting-ready presentation. A natural upsell at checkout and a strong performer in display cases.</p>
+            
+            <div class="category-section">
+              <h3 class="category-title">Chocolate Bar</h3>
+              <div class="product-grid">
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Crispy Rice Crunchies</div>
+        <div class="product-meta">100mg Milk Chocolate Bars </div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (25u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$10.75</div>
+              <div class="price-cell">$268.75</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$10.00</div>
+              <div class="price-cell">$250.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$9.25</div>
+              <div class="price-cell">$231.25</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$8.50</div>
+              <div class="price-cell">$212.50</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1339 units · 53.56 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">English Toffee Bits</div>
+        <div class="product-meta">100mg Milk Chocolate Bars </div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (25u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$10.75</div>
+              <div class="price-cell">$268.75</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$10.00</div>
+              <div class="price-cell">$250.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$9.25</div>
+              <div class="price-cell">$231.25</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$8.50</div>
+              <div class="price-cell">$212.50</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">1814 units · 72.56 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Peanut Butter Breath</div>
+        <div class="product-meta">1g Pre-Rolls </div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (25u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$10.75</div>
+              <div class="price-cell">$268.75</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$10.00</div>
+              <div class="price-cell">$250.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$9.25</div>
+              <div class="price-cell">$231.25</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$8.50</div>
+              <div class="price-cell">$212.50</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">4195 units · 41.95 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Peanut Butter Filling</div>
+        <div class="product-meta">100mg Milk Chocolate Bars </div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (25u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$10.75</div>
+              <div class="price-cell">$268.75</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$10.00</div>
+              <div class="price-cell">$250.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$9.25</div>
+              <div class="price-cell">$231.25</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$8.50</div>
+              <div class="price-cell">$212.50</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">869 units · 34.76 cases</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-name">Peanut Butter Filling</div>
+        <div class="product-meta">100mg Milk Chocolate Bars </div>
+      </div>
+      <div class="product-body">
+        <div class="price-section">
+          <div class="price-table">
+            <div class="price-row header-row">
+              <div class="price-cell label-cell">Tier</div>
+              <div class="price-cell">Unit</div>
+              <div class="price-cell">Case (25u)</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t1">T1</div>
+              <div class="price-cell">$10.75</div>
+              <div class="price-cell">$268.75</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t2">T2</div>
+              <div class="price-cell">$10.00</div>
+              <div class="price-cell">$250.00</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t3">T3</div>
+              <div class="price-cell">$9.25</div>
+              <div class="price-cell">$231.25</div>
+            </div>
+            <div class="price-row">
+              <div class="price-cell label-cell t4">T4</div>
+              <div class="price-cell">$8.50</div>
+              <div class="price-cell">$212.50</div>
+            </div>
+          </div>
+        </div>
+        <div class="stock-info">
+          <span class="stock-badge">2145 units · 85.8 cases</span>
+        </div>
+      </div>
+    </div></div>
+            </div>
+          </div>
+        </section>
+
+<div class="cta-section">
+  <div class="cta-title">Ready to place an order?</div>
+  <div class="cta-sub">Reach out to Bernard directly — we'll get you set up on LeafLink and build the right package for your store.</div>
+  <div class="cta-buttons">
+    <a class="cta-btn cta-btn-primary" href="https://app.leaflink.com/order/" target="_blank">Order on LeafLink</a>
+    <a class="cta-btn cta-btn-secondary" href="mailto:bernard@sapphirefarms.com">Contact Bernard</a>
+  </div>
+</div>
+
+<footer>
+  © 2026 Sapphire Farms · NY Metro + Long Island · Menu updates automatically with inventory
+</footer>
+
+</body>
+</html>
