@@ -9,14 +9,15 @@
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f4f4f4; color: #1a1a1a; font-size: 14px; line-height: 1.5; }
 
-    /* ── HEADER ── */
+    /* HEADER */
     .site-header { background: #0d0d0d; color: #fff; padding: 28px 24px 20px; text-align: center; }
     .site-title   { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; }
     .site-sub     { color: #888; font-size: 0.85rem; margin-top: 4px; }
-    .updated      { display: inline-block; margin-top: 10px; background: #1a1a1a; border: 1px solid #333;
-                     color: #666; font-size: 0.75rem; padding: 3px 12px; border-radius: 20px; }
+    .updated      { display: inline-block; margin-top: 10px; background: #1a1a1a;
+                     border: 1px solid #333; color: #666; font-size: 0.75rem;
+                     padding: 3px 12px; border-radius: 20px; }
 
-    /* ── TIER BOX ── */
+    /* TIER BOX */
     .tier-box   { max-width: 820px; margin: 24px auto; background: #fff; border-radius: 10px;
                    padding: 20px 24px; box-shadow: 0 1px 8px rgba(0,0,0,.07); }
     .tier-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
@@ -26,100 +27,80 @@
                    background: #fafafa; border: 1px solid #eee; border-radius: 8px; padding: 12px 6px; }
     .tier-lbl   { font-weight: 800; font-size: 1rem; }
     .tier-cat   { font-size: 0.75rem; color: #777; }
-    .t1         { color: #999; }
-    .t2         { color: #4a90d9; }
-    .t3         { color: #3c9e5f; }
-    .t4         { color: #e07b20; }
-    .tier-note  { font-size: 0.8rem; color: #666; line-height: 1.7; }
+    .tier-note  { font-size: 0.8rem; color: #555; line-height: 1.7; }
 
-    /* ── TAB BAR ── */
-    .tab-bar    { max-width: 820px; margin: 0 auto 0; padding: 0 0; display: flex; gap: 4px;
-                   background: #0d0d0d; border-radius: 10px 10px 0 0; overflow: hidden; }
+    /* TAB BAR */
+    .tab-bar { max-width: 820px; margin: 0 auto; display: flex; gap: 0;
+                background: #111; border-radius: 10px 10px 0 0; overflow: hidden; }
     .tab-bar button {
-      flex: 1; background: transparent; border: none; color: #888; font-size: 0.88rem;
-      font-weight: 600; padding: 13px 8px; cursor: pointer; transition: background .15s, color .15s;
-      font-family: inherit; border-bottom: 3px solid transparent;
+      flex: 1; background: transparent; border: none; border-bottom: 3px solid transparent;
+      color: #777; font-size: 0.88rem; font-weight: 600; padding: 13px 8px;
+      cursor: pointer; transition: all .15s; font-family: inherit;
     }
-    .tab-bar button:hover { color: #fff; background: #1a1a1a; }
-    .tab-bar button.active { color: #fff; border-bottom-color: var(--acc); background: #111; }
+    .tab-bar button:hover  { color: #fff; background: #1a1a1a; }
+    .tab-bar button.active { color: #fff; border-bottom-color: var(--acc); background: #0d0d0d; }
 
-    /* ── TAB PANELS ── */
-    .tab-panel          { max-width: 820px; margin: 0 auto 32px; background: #fff;
-                           border-radius: 0 0 10px 10px; overflow: hidden;
-                           box-shadow: 0 2px 12px rgba(0,0,0,.08); display: none; }
-    .tab-panel.active   { display: block; }
+    /* TAB PANELS */
+    .tab-panel        { max-width: 820px; margin: 0 auto 32px; background: #fff;
+                         border-radius: 0 0 10px 10px; overflow: hidden;
+                         box-shadow: 0 2px 12px rgba(0,0,0,.08); display: none; }
+    .tab-panel.active { display: block; }
 
-    .brand-header { display: flex; align-items: center; gap: 14px; padding: 20px 24px; color: #fff; }
-    .brand-emoji  { font-size: 2rem; line-height: 1; }
-    .brand-name   { font-size: 1.3rem; font-weight: 800; }
-    .brand-tagline{ font-size: 0.82rem; opacity: 0.8; margin-top: 2px; }
-    .brand-body   { padding: 20px 24px 28px; }
-    .brand-desc   { color: #555; font-size: 0.85rem; line-height: 1.7; margin-bottom: 20px;
-                     padding-left: 12px; border-left: 3px solid #eee; }
+    .brand-header  { display: flex; align-items: center; gap: 14px; padding: 18px 24px; color: #fff; }
+    .brand-emoji   { font-size: 2rem; line-height: 1; }
+    .brand-name    { font-size: 1.25rem; font-weight: 800; }
+    .brand-tagline { font-size: 0.82rem; opacity: 0.75; margin-top: 2px; }
+    .brand-body    { padding: 20px 24px 28px; }
+    .brand-desc    { color: #555; font-size: 0.85rem; line-height: 1.7; margin-bottom: 18px;
+                      padding-left: 12px; border-left: 3px solid #eee; }
 
-    /* ── CATEGORY / FORMAT TITLES ── */
-    .cat-title  { font-size: 0.95rem; font-weight: 700; text-transform: uppercase;
-                   letter-spacing: 0.6px; color: #333; margin: 20px 0 10px;
-                   padding-bottom: 6px; border-bottom: 2px solid #f0f0f0; }
-    .cat-title:first-child { margin-top: 0; }
-    .fmt-title  { font-size: 0.85rem; font-weight: 700; color: #555; margin: 12px 0 6px; }
-    .case-note  { font-weight: 400; font-size: 0.78rem; color: #999; text-transform: none; letter-spacing: 0; }
-    .case-note-inline { font-size: 0.78rem; color: #999; margin-bottom: 8px; }
+    /* CATEGORY TITLE */
+    .cat-title { font-size: 0.88rem; font-weight: 700; text-transform: uppercase;
+                  letter-spacing: 0.6px; color: #444; margin: 22px 0 10px;
+                  padding-bottom: 6px; border-bottom: 2px solid #f0f0f0; }
+    .cat-title:first-of-type { margin-top: 0; }
 
-    /* ── TABLE ── */
-    .table-wrap { overflow-x: auto; margin-bottom: 16px; border-radius: 8px;
-                   border: 1px solid #e8e8e8; }
-    table       { width: 100%; border-collapse: collapse; font-size: 0.82rem; white-space: nowrap; }
-    thead tr    { background: #f7f7f7; }
+    /* TABLE */
+    .table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid #e5e5e5; margin-bottom: 4px; }
+    table       { width: 100%; border-collapse: collapse; font-size: 0.83rem; white-space: nowrap; }
 
-    .header-top th, .header-tiers th {
-      padding: 7px 10px; text-align: right; font-weight: 700; color: #555;
-      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.3px;
-      border-bottom: 1px solid #e0e0e0;
+    thead th {
+      background: #f7f7f7; padding: 8px 12px; text-align: right;
+      font-size: 0.75rem; font-weight: 700; color: #666; text-transform: uppercase;
+      letter-spacing: 0.3px; border-bottom: 1px solid #e0e0e0;
     }
-    .strain-col { text-align: left !important; min-width: 120px; }
-    .stock-col  { min-width: 64px; }
-    .group-header { text-align: center !important; border-left: 1px solid #e8e8e8; }
-    .unit-group { background: #f9f9ff; }
-    .case-group { background: #f9fff9; }
+    th.strain-col { text-align: left; min-width: 130px; }
 
-    /* tier column colors in header */
+    /* tier header colors */
     th.t1 { color: #999 !important; }
     th.t2 { color: #4a90d9 !important; }
     th.t3 { color: #3c9e5f !important; }
     th.t4 { color: #e07b20 !important; }
-    th.case-t1 { color: #999 !important; border-left: 1px solid #e8e8e8; }
-    th.case-t2 { color: #4a90d9 !important; }
-    th.case-t3 { color: #3c9e5f !important; }
-    th.case-t4 { color: #e07b20 !important; }
 
-    tbody tr         { border-bottom: 1px solid #f0f0f0; }
-    tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover   { background: #fafafa; }
-    td               { padding: 7px 10px; text-align: right; color: #333; }
+    tbody tr              { border-bottom: 1px solid #f2f2f2; }
+    tbody tr:last-child   { border-bottom: none; }
+    tbody tr:hover        { background: #fafafa; }
+    td                    { padding: 7px 12px; text-align: right; color: #444; }
+    td.strain-name        { text-align: left; font-weight: 600; color: #111;
+                             white-space: normal; min-width: 120px; }
+    td.thc                { color: #2e7d32; font-weight: 600; }
+    td.grams              { color: #666; }
+    td.case-qty           { color: #888; }
+    td.t1                 { color: #888; }
+    td.t2                 { color: #4a90d9; }
+    td.t3                 { color: #3c9e5f; }
+    td.t4                 { color: #e07b20; font-weight: 600; }
 
-    td.strain-name   { text-align: left; font-weight: 600; color: #111; white-space: normal; min-width: 110px; }
-    td.thc           { color: #2e7d32; font-weight: 600; }
-    td.t1            { color: #777; }
-    td.t2            { color: #4a90d9; }
-    td.t3            { color: #3c9e5f; }
-    td.t4            { color: #e07b20; font-weight: 600; }
-    td.case-t1       { color: #777; border-left: 1px solid #f0f0f0; }
-    td.case-t2       { color: #4a90d9; }
-    td.case-t3       { color: #3c9e5f; }
-    td.case-t4       { color: #e07b20; font-weight: 600; }
-    td.stock         { color: #888; font-size: 0.78rem; }
-
-    /* ── CTA ── */
-    .cta-section { max-width: 820px; margin: 0 auto 48px; background: #0d0d0d; color: #fff;
-                    border-radius: 10px; padding: 32px 28px; text-align: center; }
-    .cta-title   { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
-    .cta-sub     { color: #999; font-size: 0.88rem; margin-bottom: 20px; }
-    .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .cta-btn     { display: inline-block; padding: 11px 26px; border-radius: 7px;
-                    font-weight: 700; text-decoration: none; font-size: 0.9rem; transition: opacity .15s; }
-    .cta-primary { background: #fff; color: #0d0d0d; }
-    .cta-secondary { background: transparent; color: #fff; border: 2px solid #444; }
+    /* CTA */
+    .cta-section  { max-width: 820px; margin: 0 auto 48px; background: #0d0d0d; color: #fff;
+                     border-radius: 10px; padding: 32px 28px; text-align: center; }
+    .cta-title    { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
+    .cta-sub      { color: #999; font-size: 0.88rem; margin-bottom: 20px; }
+    .cta-buttons  { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .cta-btn      { display: inline-block; padding: 11px 26px; border-radius: 7px;
+                     font-weight: 700; text-decoration: none; font-size: 0.9rem; transition: opacity .15s; }
+    .cta-primary  { background: #fff; color: #0d0d0d; }
+    .cta-secondary{ background: transparent; color: #fff; border: 2px solid #444; }
     .cta-btn:hover { opacity: 0.82; }
 
     footer { text-align: center; color: #bbb; font-size: 0.75rem; padding: 16px 24px 32px; }
@@ -142,15 +123,14 @@
 
 <div class="tier-box">
   <h2 class="tier-title">📊 Tier Pricing</h2>
-  <p class="tier-intro">Your tier is set by how many <strong>product categories</strong> you carry in a 30-day window. More categories = better pricing across all brands.</p>
+  <p class="tier-intro">Your tier is set by how many <strong>product categories</strong> you carry in a 30-day window. More categories = better per-unit pricing across all brands.</p>
   <div class="tier-grid">
     <div class="tier-card"><span class="tier-lbl t1">T1</span><span class="tier-cat">1 category</span></div>
     <div class="tier-card"><span class="tier-lbl t2">T2</span><span class="tier-cat">2 categories</span></div>
     <div class="tier-card"><span class="tier-lbl t3">T3</span><span class="tier-cat">3 categories</span></div>
     <div class="tier-card"><span class="tier-lbl t4">T4</span><span class="tier-cat">4+ categories</span></div>
   </div>
-  <p class="tier-note">Categories: <strong>Flower · Pre-Roll · Infused Pre-Roll · Vape · Chocolate</strong><br>
-  Partial case = full case price × 1.07</p>
+  <p class="tier-note">Categories: <strong>Flower · Pre-Roll · Infused Pre-Roll · 510 Thread Carts · AIO Disposables · Chocolate</strong></p>
 </div>
 
 <div class="tab-bar" role="tablist">
@@ -162,7 +142,7 @@
 </div>
 
 
-  <div class="tab-panel" id="tab-leal" style="--brand-color:#1a4a2e;--brand-accent:#4caf72">
+  <div class="tab-panel" id="tab-leal">
     <div class="brand-header" style="background:#1a4a2e">
       <span class="brand-emoji">🌿</span>
       <div>
@@ -171,867 +151,605 @@
       </div>
     </div>
     <div class="brand-body">
-      <p class="brand-desc">Single-strain, lab-tested, grown for consistency. Available in 1/8oz, 1/4oz, and 1oz formats plus 1g pre-rolls and multipacks — the strains your customers keep asking for.</p>
-      <h3 class="cat-title">Flower</h3><h4 class="fmt-title">1/8 oz <span class="case-note">· case: 100 units</span></h4>
+      <p class="brand-desc">Single-strain, lab-tested, grown for consistency. Available in 1/8oz, 1/4oz, and 1oz formats plus 1g pre-rolls and multipacks.</p>
+      <h3 class="cat-title">Flower</h3>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr class="header-top">
-            <th rowspan="2" class="strain-col">Strain</th>
-            
+          <tr>
+            <th class="strain-col">Product</th>
             <th>THC %</th>
-            <th colspan="4" class="group-header unit-group">Per Unit</th>
-            <th colspan="4" class="group-header case-group">Case / 100u</th>
-            <th rowspan="2" class="stock-col">Units<br>In Stock</th>
-          </tr>
-          <tr class="header-tiers">
-            <th class="t1">T1</th><th class="t2">T2</th><th class="t3">T3</th><th class="t4">T4</th>
-            <th class="case-t1">T1</th><th class="case-t2">T2</th><th class="case-t3">T3</th><th class="case-t4">T4</th>
-          </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td class="strain-name">Chronic Tonic</td>
-          
-          <td class="thc">26.39%</td>
-          <td class="t1">$13.00</td>
-          <td class="t2">$12.90</td>
-          <td class="t3">$12.80</td>
-          <td class="t4">$12.70</td>
-          <td class="case-t1">$1300.00</td>
-          <td class="case-t2">$1290.00</td>
-          <td class="case-t3">$1280.00</td>
-          <td class="case-t4">$1270.00</td>
-          <td class="stock">1956</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Gorilla Zkittlez</td>
-          
-          <td class="thc">26.12%</td>
-          <td class="t1">$13.00</td>
-          <td class="t2">$12.90</td>
-          <td class="t3">$12.80</td>
-          <td class="t4">$12.70</td>
-          <td class="case-t1">$1300.00</td>
-          <td class="case-t2">$1290.00</td>
-          <td class="case-t3">$1280.00</td>
-          <td class="case-t4">$1270.00</td>
-          <td class="stock">4140</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Grape Cake</td>
-          
-          <td class="thc">25.61%</td>
-          <td class="t1">$13.00</td>
-          <td class="t2">$12.90</td>
-          <td class="t3">$12.80</td>
-          <td class="t4">$12.70</td>
-          <td class="case-t1">$1300.00</td>
-          <td class="case-t2">$1290.00</td>
-          <td class="case-t3">$1280.00</td>
-          <td class="case-t4">$1270.00</td>
-          <td class="stock">3548</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Hella Jelly</td>
-          
-          <td class="thc">29.10%</td>
-          <td class="t1">$13.00</td>
-          <td class="t2">$12.90</td>
-          <td class="t3">$12.80</td>
-          <td class="t4">$12.70</td>
-          <td class="case-t1">$1300.00</td>
-          <td class="case-t2">$1290.00</td>
-          <td class="case-t3">$1280.00</td>
-          <td class="case-t4">$1270.00</td>
-          <td class="stock">2</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Hella Jelly</td>
-          
-          <td class="thc">31.06%</td>
-          <td class="t1">$13.00</td>
-          <td class="t2">$12.90</td>
-          <td class="t3">$12.80</td>
-          <td class="t4">$12.70</td>
-          <td class="case-t1">$1300.00</td>
-          <td class="case-t2">$1290.00</td>
-          <td class="case-t3">$1280.00</td>
-          <td class="case-t4">$1270.00</td>
-          <td class="stock">9747</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Jungle Gemz</td>
-          
-          <td class="thc">30.38%</td>
-          <td class="t1">$13.00</td>
-          <td class="t2">$12.90</td>
-          <td class="t3">$12.80</td>
-          <td class="t4">$12.70</td>
-          <td class="case-t1">$1300.00</td>
-          <td class="case-t2">$1290.00</td>
-          <td class="case-t3">$1280.00</td>
-          <td class="case-t4">$1270.00</td>
-          <td class="stock">4200</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Kush Cake</td>
-          
-          <td class="thc">30.06%</td>
-          <td class="t1">$13.00</td>
-          <td class="t2">$12.90</td>
-          <td class="t3">$12.80</td>
-          <td class="t4">$12.70</td>
-          <td class="case-t1">$1300.00</td>
-          <td class="case-t2">$1290.00</td>
-          <td class="case-t3">$1280.00</td>
-          <td class="case-t4">$1270.00</td>
-          <td class="stock">1692</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Nic The Bruiser</td>
-          
-          <td class="thc">31.04%</td>
-          <td class="t1">$13.00</td>
-          <td class="t2">$12.90</td>
-          <td class="t3">$12.80</td>
-          <td class="t4">$12.70</td>
-          <td class="case-t1">$1300.00</td>
-          <td class="case-t2">$1290.00</td>
-          <td class="case-t3">$1280.00</td>
-          <td class="case-t4">$1270.00</td>
-          <td class="stock">1885</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Platinum Lemon Cherry Gelato</td>
-          
-          <td class="thc">33.30%</td>
-          <td class="t1">$13.00</td>
-          <td class="t2">$12.90</td>
-          <td class="t3">$12.80</td>
-          <td class="t4">$12.70</td>
-          <td class="case-t1">$1300.00</td>
-          <td class="case-t2">$1290.00</td>
-          <td class="case-t3">$1280.00</td>
-          <td class="case-t4">$1270.00</td>
-          <td class="stock">600</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Stank Breath</td>
-          
-          <td class="thc">24.41%</td>
-          <td class="t1">$13.00</td>
-          <td class="t2">$12.90</td>
-          <td class="t3">$12.80</td>
-          <td class="t4">$12.70</td>
-          <td class="case-t1">$1300.00</td>
-          <td class="case-t2">$1290.00</td>
-          <td class="case-t3">$1280.00</td>
-          <td class="case-t4">$1270.00</td>
-          <td class="stock">1665</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Super Boof</td>
-          
-          <td class="thc">24.15%</td>
-          <td class="t1">$13.00</td>
-          <td class="t2">$12.90</td>
-          <td class="t3">$12.80</td>
-          <td class="t4">$12.70</td>
-          <td class="case-t1">$1300.00</td>
-          <td class="case-t2">$1290.00</td>
-          <td class="case-t3">$1280.00</td>
-          <td class="case-t4">$1270.00</td>
-          <td class="stock">3969</td>
-        </tr>
-        </tbody>
-      </table>
-    </div><h4 class="fmt-title">1/4 oz <span class="case-note">· case: 50 units</span></h4>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr class="header-top">
-            <th rowspan="2" class="strain-col">Strain</th>
-            
-            <th>THC %</th>
-            <th colspan="4" class="group-header unit-group">Per Unit</th>
-            <th colspan="4" class="group-header case-group">Case / 50u</th>
-            <th rowspan="2" class="stock-col">Units<br>In Stock</th>
-          </tr>
-          <tr class="header-tiers">
-            <th class="t1">T1</th><th class="t2">T2</th><th class="t3">T3</th><th class="t4">T4</th>
-            <th class="case-t1">T1</th><th class="case-t2">T2</th><th class="case-t3">T3</th><th class="case-t4">T4</th>
+            <th>Grams</th>
+            <th>Units/<br>Case</th>
+            <th class="t1">T1</th>
+            <th class="t2">T2</th>
+            <th class="t3">T3</th>
+            <th class="t4">T4</th>
           </tr>
         </thead>
         <tbody>
         <tr>
           <td class="strain-name">Animal Face</td>
-          
           <td class="thc">25.22%</td>
+          <td class="grams">7g</td>
+          <td class="case-qty">50</td>
           <td class="t1">$24.00</td>
           <td class="t2">$23.85</td>
           <td class="t3">$23.65</td>
           <td class="t4">$23.50</td>
-          <td class="case-t1">$1200.00</td>
-          <td class="case-t2">$1192.50</td>
-          <td class="case-t3">$1182.50</td>
-          <td class="case-t4">$1175.00</td>
-          <td class="stock">3249</td>
         </tr>
-        <tr>
-          <td class="strain-name">Chronic Tonic</td>
-          
-          <td class="thc">31.88%</td>
-          <td class="t1">$24.00</td>
-          <td class="t2">$23.85</td>
-          <td class="t3">$23.65</td>
-          <td class="t4">$23.50</td>
-          <td class="case-t1">$1200.00</td>
-          <td class="case-t2">$1192.50</td>
-          <td class="case-t3">$1182.50</td>
-          <td class="case-t4">$1175.00</td>
-          <td class="stock">3609</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Hella Jelly</td>
-          
-          <td class="thc">31.05%</td>
-          <td class="t1">$24.00</td>
-          <td class="t2">$23.85</td>
-          <td class="t3">$23.65</td>
-          <td class="t4">$23.50</td>
-          <td class="case-t1">$1200.00</td>
-          <td class="case-t2">$1192.50</td>
-          <td class="case-t3">$1182.50</td>
-          <td class="case-t4">$1175.00</td>
-          <td class="stock">3780</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Jungle Gemz</td>
-          
-          <td class="thc">27.52%</td>
-          <td class="t1">$24.00</td>
-          <td class="t2">$23.85</td>
-          <td class="t3">$23.65</td>
-          <td class="t4">$23.50</td>
-          <td class="case-t1">$1200.00</td>
-          <td class="case-t2">$1192.50</td>
-          <td class="case-t3">$1182.50</td>
-          <td class="case-t4">$1175.00</td>
-          <td class="stock">3850</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Kush Cake</td>
-          
-          <td class="thc">35.27%</td>
-          <td class="t1">$24.00</td>
-          <td class="t2">$23.85</td>
-          <td class="t3">$23.65</td>
-          <td class="t4">$23.50</td>
-          <td class="case-t1">$1200.00</td>
-          <td class="case-t2">$1192.50</td>
-          <td class="case-t3">$1182.50</td>
-          <td class="case-t4">$1175.00</td>
-          <td class="stock">4290</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Nic The Bruiser</td>
-          
-          <td class="thc">32.40%</td>
-          <td class="t1">$24.00</td>
-          <td class="t2">$23.85</td>
-          <td class="t3">$23.65</td>
-          <td class="t4">$23.50</td>
-          <td class="case-t1">$1200.00</td>
-          <td class="case-t2">$1192.50</td>
-          <td class="case-t3">$1182.50</td>
-          <td class="case-t4">$1175.00</td>
-          <td class="stock">1815</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Platinum Lemon Cherry Gelato</td>
-          
-          <td class="thc">31.99%</td>
-          <td class="t1">$24.00</td>
-          <td class="t2">$23.85</td>
-          <td class="t3">$23.65</td>
-          <td class="t4">$23.50</td>
-          <td class="case-t1">$1200.00</td>
-          <td class="case-t2">$1192.50</td>
-          <td class="case-t3">$1182.50</td>
-          <td class="case-t4">$1175.00</td>
-          <td class="stock">5522</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Stank Breath</td>
-          
-          <td class="thc">34.67%</td>
-          <td class="t1">$24.00</td>
-          <td class="t2">$23.85</td>
-          <td class="t3">$23.65</td>
-          <td class="t4">$23.50</td>
-          <td class="case-t1">$1200.00</td>
-          <td class="case-t2">$1192.50</td>
-          <td class="case-t3">$1182.50</td>
-          <td class="case-t4">$1175.00</td>
-          <td class="stock">1430</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Super Boof</td>
-          
-          <td class="thc">30.41%</td>
-          <td class="t1">$24.00</td>
-          <td class="t2">$23.85</td>
-          <td class="t3">$23.65</td>
-          <td class="t4">$23.50</td>
-          <td class="case-t1">$1200.00</td>
-          <td class="case-t2">$1192.50</td>
-          <td class="case-t3">$1182.50</td>
-          <td class="case-t4">$1175.00</td>
-          <td class="stock">4161</td>
-        </tr>
-        </tbody>
-      </table>
-    </div><h4 class="fmt-title">1 oz <span class="case-note">· case: 16 units</span></h4>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr class="header-top">
-            <th rowspan="2" class="strain-col">Strain</th>
-            
-            <th>THC %</th>
-            <th colspan="4" class="group-header unit-group">Per Unit</th>
-            <th colspan="4" class="group-header case-group">Case / 16u</th>
-            <th rowspan="2" class="stock-col">Units<br>In Stock</th>
-          </tr>
-          <tr class="header-tiers">
-            <th class="t1">T1</th><th class="t2">T2</th><th class="t3">T3</th><th class="t4">T4</th>
-            <th class="case-t1">T1</th><th class="case-t2">T2</th><th class="case-t3">T3</th><th class="case-t4">T4</th>
-          </tr>
-        </thead>
-        <tbody>
         <tr>
           <td class="strain-name">Animal Face</td>
-          
           <td class="thc">34.26%</td>
+          <td class="grams">28g</td>
+          <td class="case-qty">16</td>
           <td class="t1">$80.00</td>
           <td class="t2">$79.00</td>
           <td class="t3">$78.00</td>
           <td class="t4">$77.00</td>
-          <td class="case-t1">$1280.00</td>
-          <td class="case-t2">$1264.00</td>
-          <td class="case-t3">$1248.00</td>
-          <td class="case-t4">$1232.00</td>
-          <td class="stock">2055</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Chronic Tonic</td>
+          <td class="thc">26.39%</td>
+          <td class="grams">3.5g</td>
+          <td class="case-qty">100</td>
+          <td class="t1">$13.00</td>
+          <td class="t2">$12.90</td>
+          <td class="t3">$12.80</td>
+          <td class="t4">$12.70</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Chronic Tonic</td>
+          <td class="thc">31.88%</td>
+          <td class="grams">7g</td>
+          <td class="case-qty">50</td>
+          <td class="t1">$24.00</td>
+          <td class="t2">$23.85</td>
+          <td class="t3">$23.65</td>
+          <td class="t4">$23.50</td>
         </tr>
         <tr>
           <td class="strain-name">Garlic Budder</td>
-          
           <td class="thc">31.35%</td>
+          <td class="grams">28g</td>
+          <td class="case-qty">16</td>
           <td class="t1">$80.00</td>
           <td class="t2">$79.00</td>
           <td class="t3">$78.00</td>
           <td class="t4">$77.00</td>
-          <td class="case-t1">$1280.00</td>
-          <td class="case-t2">$1264.00</td>
-          <td class="case-t3">$1248.00</td>
-          <td class="case-t4">$1232.00</td>
-          <td class="stock">2301</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Gorilla Zkittlez</td>
+          <td class="thc">26.12%</td>
+          <td class="grams">3.5g</td>
+          <td class="case-qty">100</td>
+          <td class="t1">$13.00</td>
+          <td class="t2">$12.90</td>
+          <td class="t3">$12.80</td>
+          <td class="t4">$12.70</td>
         </tr>
         <tr>
           <td class="strain-name">Grape Cake</td>
-          
+          <td class="thc">25.61%</td>
+          <td class="grams">3.5g</td>
+          <td class="case-qty">100</td>
+          <td class="t1">$13.00</td>
+          <td class="t2">$12.90</td>
+          <td class="t3">$12.80</td>
+          <td class="t4">$12.70</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Grape Cake</td>
           <td class="thc">30.65%</td>
+          <td class="grams">28g</td>
+          <td class="case-qty">16</td>
           <td class="t1">$80.00</td>
           <td class="t2">$79.00</td>
           <td class="t3">$78.00</td>
           <td class="t4">$77.00</td>
-          <td class="case-t1">$1280.00</td>
-          <td class="case-t2">$1264.00</td>
-          <td class="case-t3">$1248.00</td>
-          <td class="case-t4">$1232.00</td>
-          <td class="stock">1758</td>
         </tr>
         <tr>
           <td class="strain-name">Hella Jelly</td>
-          
+          <td class="thc">29.10%</td>
+          <td class="grams">3.5g</td>
+          <td class="case-qty">100</td>
+          <td class="t1">$13.00</td>
+          <td class="t2">$12.90</td>
+          <td class="t3">$12.80</td>
+          <td class="t4">$12.70</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Hella Jelly</td>
+          <td class="thc">31.06%</td>
+          <td class="grams">3.5g</td>
+          <td class="case-qty">100</td>
+          <td class="t1">$13.00</td>
+          <td class="t2">$12.90</td>
+          <td class="t3">$12.80</td>
+          <td class="t4">$12.70</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Hella Jelly</td>
+          <td class="thc">31.05%</td>
+          <td class="grams">7g</td>
+          <td class="case-qty">50</td>
+          <td class="t1">$24.00</td>
+          <td class="t2">$23.85</td>
+          <td class="t3">$23.65</td>
+          <td class="t4">$23.50</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Hella Jelly</td>
           <td class="thc">32.08%</td>
+          <td class="grams">28g</td>
+          <td class="case-qty">16</td>
           <td class="t1">$80.00</td>
           <td class="t2">$79.00</td>
           <td class="t3">$78.00</td>
           <td class="t4">$77.00</td>
-          <td class="case-t1">$1280.00</td>
-          <td class="case-t2">$1264.00</td>
-          <td class="case-t3">$1248.00</td>
-          <td class="case-t4">$1232.00</td>
-          <td class="stock">1409</td>
         </tr>
         <tr>
           <td class="strain-name">Jungle Gemz</td>
-          
+          <td class="thc">30.38%</td>
+          <td class="grams">3.5g</td>
+          <td class="case-qty">100</td>
+          <td class="t1">$13.00</td>
+          <td class="t2">$12.90</td>
+          <td class="t3">$12.80</td>
+          <td class="t4">$12.70</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Jungle Gemz</td>
+          <td class="thc">27.52%</td>
+          <td class="grams">7g</td>
+          <td class="case-qty">50</td>
+          <td class="t1">$24.00</td>
+          <td class="t2">$23.85</td>
+          <td class="t3">$23.65</td>
+          <td class="t4">$23.50</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Jungle Gemz</td>
           <td class="thc">31.86%</td>
+          <td class="grams">28g</td>
+          <td class="case-qty">16</td>
           <td class="t1">$80.00</td>
           <td class="t2">$79.00</td>
           <td class="t3">$78.00</td>
           <td class="t4">$77.00</td>
-          <td class="case-t1">$1280.00</td>
-          <td class="case-t2">$1264.00</td>
-          <td class="case-t3">$1248.00</td>
-          <td class="case-t4">$1232.00</td>
-          <td class="stock">2400</td>
         </tr>
         <tr>
           <td class="strain-name">Kush Cake</td>
-          
+          <td class="thc">30.06%</td>
+          <td class="grams">3.5g</td>
+          <td class="case-qty">100</td>
+          <td class="t1">$13.00</td>
+          <td class="t2">$12.90</td>
+          <td class="t3">$12.80</td>
+          <td class="t4">$12.70</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Kush Cake</td>
+          <td class="thc">35.27%</td>
+          <td class="grams">7g</td>
+          <td class="case-qty">50</td>
+          <td class="t1">$24.00</td>
+          <td class="t2">$23.85</td>
+          <td class="t3">$23.65</td>
+          <td class="t4">$23.50</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Kush Cake</td>
           <td class="thc">29.79%</td>
+          <td class="grams">28g</td>
+          <td class="case-qty">16</td>
           <td class="t1">$80.00</td>
           <td class="t2">$79.00</td>
           <td class="t3">$78.00</td>
           <td class="t4">$77.00</td>
-          <td class="case-t1">$1280.00</td>
-          <td class="case-t2">$1264.00</td>
-          <td class="case-t3">$1248.00</td>
-          <td class="case-t4">$1232.00</td>
-          <td class="stock">1505</td>
         </tr>
         <tr>
           <td class="strain-name">Nic The Bruiser</td>
-          
+          <td class="thc">31.04%</td>
+          <td class="grams">3.5g</td>
+          <td class="case-qty">100</td>
+          <td class="t1">$13.00</td>
+          <td class="t2">$12.90</td>
+          <td class="t3">$12.80</td>
+          <td class="t4">$12.70</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Nic The Bruiser</td>
+          <td class="thc">32.40%</td>
+          <td class="grams">7g</td>
+          <td class="case-qty">50</td>
+          <td class="t1">$24.00</td>
+          <td class="t2">$23.85</td>
+          <td class="t3">$23.65</td>
+          <td class="t4">$23.50</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Nic The Bruiser</td>
           <td class="thc">33.98%</td>
+          <td class="grams">28g</td>
+          <td class="case-qty">16</td>
           <td class="t1">$80.00</td>
           <td class="t2">$79.00</td>
           <td class="t3">$78.00</td>
           <td class="t4">$77.00</td>
-          <td class="case-t1">$1280.00</td>
-          <td class="case-t2">$1264.00</td>
-          <td class="case-t3">$1248.00</td>
-          <td class="case-t4">$1232.00</td>
-          <td class="stock">1834</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Platinum Lemon Cherry Gelato</td>
+          <td class="thc">33.30%</td>
+          <td class="grams">3.5g</td>
+          <td class="case-qty">100</td>
+          <td class="t1">$13.00</td>
+          <td class="t2">$12.90</td>
+          <td class="t3">$12.80</td>
+          <td class="t4">$12.70</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Platinum Lemon Cherry Gelato</td>
+          <td class="thc">31.99%</td>
+          <td class="grams">7g</td>
+          <td class="case-qty">50</td>
+          <td class="t1">$24.00</td>
+          <td class="t2">$23.85</td>
+          <td class="t3">$23.65</td>
+          <td class="t4">$23.50</td>
         </tr>
         <tr>
           <td class="strain-name">Stank Breath</td>
-          
+          <td class="thc">24.41%</td>
+          <td class="grams">3.5g</td>
+          <td class="case-qty">100</td>
+          <td class="t1">$13.00</td>
+          <td class="t2">$12.90</td>
+          <td class="t3">$12.80</td>
+          <td class="t4">$12.70</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Stank Breath</td>
+          <td class="thc">34.67%</td>
+          <td class="grams">7g</td>
+          <td class="case-qty">50</td>
+          <td class="t1">$24.00</td>
+          <td class="t2">$23.85</td>
+          <td class="t3">$23.65</td>
+          <td class="t4">$23.50</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Stank Breath</td>
           <td class="thc">34.99%</td>
+          <td class="grams">28g</td>
+          <td class="case-qty">16</td>
           <td class="t1">$80.00</td>
           <td class="t2">$79.00</td>
           <td class="t3">$78.00</td>
           <td class="t4">$77.00</td>
-          <td class="case-t1">$1280.00</td>
-          <td class="case-t2">$1264.00</td>
-          <td class="case-t3">$1248.00</td>
-          <td class="case-t4">$1232.00</td>
-          <td class="stock">1934</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Super Boof</td>
+          <td class="thc">24.15%</td>
+          <td class="grams">3.5g</td>
+          <td class="case-qty">100</td>
+          <td class="t1">$13.00</td>
+          <td class="t2">$12.90</td>
+          <td class="t3">$12.80</td>
+          <td class="t4">$12.70</td>
+        </tr>
+        <tr>
+          <td class="strain-name">Super Boof</td>
+          <td class="thc">30.41%</td>
+          <td class="grams">7g</td>
+          <td class="case-qty">50</td>
+          <td class="t1">$24.00</td>
+          <td class="t2">$23.85</td>
+          <td class="t3">$23.65</td>
+          <td class="t4">$23.50</td>
         </tr>
         </tbody>
       </table>
-    </div><h3 class="cat-title">Pre-Roll</h3><p class="case-note-inline">Case: 100 units per case</p>
+    </div><h3 class="cat-title">Pre-Roll</h3>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr class="header-top">
-            <th rowspan="2" class="strain-col">Strain</th>
+          <tr>
+            <th class="strain-col">Product</th>
             
-            
-            <th colspan="4" class="group-header unit-group">Per Unit</th>
-            <th colspan="4" class="group-header case-group">Case / 100u</th>
-            <th rowspan="2" class="stock-col">Units<br>In Stock</th>
-          </tr>
-          <tr class="header-tiers">
-            <th class="t1">T1</th><th class="t2">T2</th><th class="t3">T3</th><th class="t4">T4</th>
-            <th class="case-t1">T1</th><th class="case-t2">T2</th><th class="case-t3">T3</th><th class="case-t4">T4</th>
+            <th>Grams</th>
+            <th>Units/<br>Case</th>
+            <th class="t1">T1</th>
+            <th class="t2">T2</th>
+            <th class="t3">T3</th>
+            <th class="t4">T4</th>
           </tr>
         </thead>
         <tbody>
         <tr>
           <td class="strain-name">Biscotti</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">11122</td>
         </tr>
         <tr>
           <td class="strain-name">Caramel Cream</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">9280</td>
         </tr>
         <tr>
           <td class="strain-name">Chocolate Berry</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">11781</td>
         </tr>
         <tr>
           <td class="strain-name">Death Star OG</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">14585</td>
         </tr>
         <tr>
           <td class="strain-name">Fire OG</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">14105</td>
         </tr>
         <tr>
           <td class="strain-name">Fortune Cookie</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">3943</td>
         </tr>
         <tr>
           <td class="strain-name">Garlic Budder</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">1</td>
         </tr>
         <tr>
           <td class="strain-name">Humboldt Headband</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">11877</td>
         </tr>
         <tr>
           <td class="strain-name">Nic The Bruiser</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">9944</td>
         </tr>
         <tr>
           <td class="strain-name">OG Kush</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">2200</td>
         </tr>
         <tr>
           <td class="strain-name">OG Kush (7.95% THC & 8.36% CBD)</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">100</td>
         </tr>
         <tr>
           <td class="strain-name">Platinum Lemon Cherry Gelato</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">7441</td>
         </tr>
         <tr>
           <td class="strain-name">Royal Highness</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">23723</td>
         </tr>
         <tr>
           <td class="strain-name">Sharksbreath</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">2687</td>
         </tr>
         <tr>
           <td class="strain-name">Skywalker OG</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">2013</td>
         </tr>
         <tr>
           <td class="strain-name">Snow-G (8.24% THC & 8.45% CBD)</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">100</td>
         </tr>
         <tr>
           <td class="strain-name">Sour Kush</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">13107</td>
         </tr>
         <tr>
           <td class="strain-name">Stank Breath</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">9240</td>
         </tr>
         <tr>
           <td class="strain-name">Sunset Sherbet</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">13322</td>
         </tr>
         <tr>
           <td class="strain-name">Thin Mint GSC</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">100</td>
           <td class="t1">$3.75</td>
           <td class="t2">$3.70</td>
           <td class="t3">$3.65</td>
           <td class="t4">$3.55</td>
-          <td class="case-t1">$375.00</td>
-          <td class="case-t2">$370.00</td>
-          <td class="case-t3">$365.00</td>
-          <td class="case-t4">$355.00</td>
-          <td class="stock">45</td>
         </tr>
         </tbody>
       </table>
-    </div><h3 class="cat-title">Pre-Roll Multipack</h3><p class="case-note-inline">Case: 25 units per case</p>
+    </div><h3 class="cat-title">Pre-Roll Multipack</h3>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr class="header-top">
-            <th rowspan="2" class="strain-col">Strain</th>
+          <tr>
+            <th class="strain-col">Product</th>
             
-            
-            <th colspan="4" class="group-header unit-group">Per Unit</th>
-            <th colspan="4" class="group-header case-group">Case / 25u</th>
-            <th rowspan="2" class="stock-col">Units<br>In Stock</th>
-          </tr>
-          <tr class="header-tiers">
-            <th class="t1">T1</th><th class="t2">T2</th><th class="t3">T3</th><th class="t4">T4</th>
-            <th class="case-t1">T1</th><th class="case-t2">T2</th><th class="case-t3">T3</th><th class="case-t4">T4</th>
+            <th>Grams</th>
+            <th>Units/<br>Case</th>
+            <th class="t1">T1</th>
+            <th class="t2">T2</th>
+            <th class="t3">T3</th>
+            <th class="t4">T4</th>
           </tr>
         </thead>
         <tbody>
         <tr>
           <td class="strain-name">Animal Face</td>
           
-          
+          <td class="grams">5g</td>
+          <td class="case-qty">25</td>
           <td class="t1">$17.50</td>
           <td class="t2">$17.25</td>
           <td class="t3">$17.00</td>
           <td class="t4">$16.75</td>
-          <td class="case-t1">$437.50</td>
-          <td class="case-t2">$431.25</td>
-          <td class="case-t3">$425.00</td>
-          <td class="case-t4">$418.75</td>
-          <td class="stock">950</td>
         </tr>
         <tr>
           <td class="strain-name">Fortune Cookie</td>
           
-          
+          <td class="grams">5g</td>
+          <td class="case-qty">25</td>
           <td class="t1">$17.50</td>
           <td class="t2">$17.25</td>
           <td class="t3">$17.00</td>
           <td class="t4">$16.75</td>
-          <td class="case-t1">$437.50</td>
-          <td class="case-t2">$431.25</td>
-          <td class="case-t3">$425.00</td>
-          <td class="case-t4">$418.75</td>
-          <td class="stock">3520</td>
         </tr>
         <tr>
           <td class="strain-name">Garlic Budder</td>
           
-          
+          <td class="grams">5g</td>
+          <td class="case-qty">25</td>
           <td class="t1">$17.50</td>
           <td class="t2">$17.25</td>
           <td class="t3">$17.00</td>
           <td class="t4">$16.75</td>
-          <td class="case-t1">$437.50</td>
-          <td class="case-t2">$431.25</td>
-          <td class="case-t3">$425.00</td>
-          <td class="case-t4">$418.75</td>
-          <td class="stock">1831</td>
         </tr>
         <tr>
           <td class="strain-name">Lemon Venom</td>
           
-          
+          <td class="grams">5g</td>
+          <td class="case-qty">25</td>
           <td class="t1">$17.50</td>
           <td class="t2">$17.25</td>
           <td class="t3">$17.00</td>
           <td class="t4">$16.75</td>
-          <td class="case-t1">$437.50</td>
-          <td class="case-t2">$431.25</td>
-          <td class="case-t3">$425.00</td>
-          <td class="case-t4">$418.75</td>
-          <td class="stock">2997</td>
         </tr>
         <tr>
           <td class="strain-name">Platinum Lemon Cherry Gelato</td>
           
-          
+          <td class="grams">5g</td>
+          <td class="case-qty">25</td>
           <td class="t1">$17.50</td>
           <td class="t2">$17.25</td>
           <td class="t3">$17.00</td>
           <td class="t4">$16.75</td>
-          <td class="case-t1">$437.50</td>
-          <td class="case-t2">$431.25</td>
-          <td class="case-t3">$425.00</td>
-          <td class="case-t4">$418.75</td>
-          <td class="stock">2500</td>
         </tr>
         <tr>
           <td class="strain-name">Stank Breath</td>
           
-          
+          <td class="grams">5g</td>
+          <td class="case-qty">25</td>
           <td class="t1">$17.50</td>
           <td class="t2">$17.25</td>
           <td class="t3">$17.00</td>
           <td class="t4">$16.75</td>
-          <td class="case-t1">$437.50</td>
-          <td class="case-t2">$431.25</td>
-          <td class="case-t3">$425.00</td>
-          <td class="case-t4">$418.75</td>
-          <td class="stock">2149</td>
         </tr>
         </tbody>
       </table>
     </div>
     </div>
   </div>
-  <div class="tab-panel" id="tab-sapphire" style="--brand-color:#1a3a5c;--brand-accent:#4a90d9">
+  <div class="tab-panel" id="tab-sapphire">
     <div class="brand-header" style="background:#1a3a5c">
       <span class="brand-emoji">💎</span>
       <div>
@@ -1040,219 +758,167 @@
       </div>
     </div>
     <div class="brand-body">
-      <p class="brand-desc">A clean, consistent vape experience built for the NY market. All-in-one devices and 510-thread carts across a range of strains — purpose-built for shelf performance and repeat purchase.</p>
-      <h3 class="cat-title">AIO Disposable <span class="case-note">· case: 30 units</span></h3>
+      <p class="brand-desc">A clean, consistent vape experience built for the NY market. All-in-one devices and 510-thread carts across a range of strains.</p>
+      <h3 class="cat-title">AIO Disposable</h3>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr class="header-top">
-            <th rowspan="2" class="strain-col">Strain</th>
-            
+          <tr>
+            <th class="strain-col">Product</th>
             <th>THC %</th>
-            <th colspan="4" class="group-header unit-group">Per Unit</th>
-            <th colspan="4" class="group-header case-group">Case / 30u</th>
-            <th rowspan="2" class="stock-col">Units<br>In Stock</th>
-          </tr>
-          <tr class="header-tiers">
-            <th class="t1">T1</th><th class="t2">T2</th><th class="t3">T3</th><th class="t4">T4</th>
-            <th class="case-t1">T1</th><th class="case-t2">T2</th><th class="case-t3">T3</th><th class="case-t4">T4</th>
+            <th>Grams</th>
+            <th>Units/<br>Case</th>
+            <th class="t1">T1</th>
+            <th class="t2">T2</th>
+            <th class="t3">T3</th>
+            <th class="t4">T4</th>
           </tr>
         </thead>
         <tbody>
         <tr>
           <td class="strain-name">Blue Dream</td>
-          
           <td class="thc">94.10%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">30</td>
           <td class="t1">$20.00</td>
           <td class="t2">$19.50</td>
           <td class="t3">$19.00</td>
           <td class="t4">$18.00</td>
-          <td class="case-t1">$600.00</td>
-          <td class="case-t2">$585.00</td>
-          <td class="case-t3">$570.00</td>
-          <td class="case-t4">$540.00</td>
-          <td class="stock">2195</td>
         </tr>
         <tr>
           <td class="strain-name">Galactic Gas</td>
-          
           <td class="thc">91.75%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">30</td>
           <td class="t1">$20.00</td>
           <td class="t2">$19.50</td>
           <td class="t3">$19.00</td>
           <td class="t4">$18.00</td>
-          <td class="case-t1">$600.00</td>
-          <td class="case-t2">$585.00</td>
-          <td class="case-t3">$570.00</td>
-          <td class="case-t4">$540.00</td>
-          <td class="stock">291</td>
         </tr>
         <tr>
           <td class="strain-name">Gorilla Glue #4</td>
-          
           <td class="thc">92.32%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">30</td>
           <td class="t1">$20.00</td>
           <td class="t2">$19.50</td>
           <td class="t3">$19.00</td>
           <td class="t4">$18.00</td>
-          <td class="case-t1">$600.00</td>
-          <td class="case-t2">$585.00</td>
-          <td class="case-t3">$570.00</td>
-          <td class="case-t4">$540.00</td>
-          <td class="stock">3783</td>
         </tr>
         <tr>
           <td class="strain-name">Pink Rozay</td>
-          
           <td class="thc">89.51%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">30</td>
           <td class="t1">$20.00</td>
           <td class="t2">$19.50</td>
           <td class="t3">$19.00</td>
           <td class="t4">$18.00</td>
-          <td class="case-t1">$600.00</td>
-          <td class="case-t2">$585.00</td>
-          <td class="case-t3">$570.00</td>
-          <td class="case-t4">$540.00</td>
-          <td class="stock">694</td>
         </tr>
         <tr>
           <td class="strain-name">Raspberry Kush</td>
-          
           <td class="thc">95.66%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">30</td>
           <td class="t1">$20.00</td>
           <td class="t2">$19.50</td>
           <td class="t3">$19.00</td>
           <td class="t4">$18.00</td>
-          <td class="case-t1">$600.00</td>
-          <td class="case-t2">$585.00</td>
-          <td class="case-t3">$570.00</td>
-          <td class="case-t4">$540.00</td>
-          <td class="stock">3145</td>
         </tr>
         <tr>
           <td class="strain-name">Super Sour Diesel</td>
-          
           <td class="thc">95.02%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">30</td>
           <td class="t1">$20.00</td>
           <td class="t2">$19.50</td>
           <td class="t3">$19.00</td>
           <td class="t4">$18.00</td>
-          <td class="case-t1">$600.00</td>
-          <td class="case-t2">$585.00</td>
-          <td class="case-t3">$570.00</td>
-          <td class="case-t4">$540.00</td>
-          <td class="stock">924</td>
         </tr>
         </tbody>
       </table>
-    </div><h3 class="cat-title">510 Thread Cart <span class="case-note">· case: 30 units</span></h3>
+    </div><h3 class="cat-title">510 Thread Cart</h3>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr class="header-top">
-            <th rowspan="2" class="strain-col">Strain</th>
-            
+          <tr>
+            <th class="strain-col">Product</th>
             <th>THC %</th>
-            <th colspan="4" class="group-header unit-group">Per Unit</th>
-            <th colspan="4" class="group-header case-group">Case / 30u</th>
-            <th rowspan="2" class="stock-col">Units<br>In Stock</th>
-          </tr>
-          <tr class="header-tiers">
-            <th class="t1">T1</th><th class="t2">T2</th><th class="t3">T3</th><th class="t4">T4</th>
-            <th class="case-t1">T1</th><th class="case-t2">T2</th><th class="case-t3">T3</th><th class="case-t4">T4</th>
+            <th>Grams</th>
+            <th>Units/<br>Case</th>
+            <th class="t1">T1</th>
+            <th class="t2">T2</th>
+            <th class="t3">T3</th>
+            <th class="t4">T4</th>
           </tr>
         </thead>
         <tbody>
         <tr>
           <td class="strain-name">Alien OG</td>
-          
           <td class="thc">93.09%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">30</td>
           <td class="t1">$17.00</td>
           <td class="t2">$16.50</td>
           <td class="t3">$16.00</td>
           <td class="t4">$15.00</td>
-          <td class="case-t1">$510.00</td>
-          <td class="case-t2">$495.00</td>
-          <td class="case-t3">$480.00</td>
-          <td class="case-t4">$450.00</td>
-          <td class="stock">2799</td>
         </tr>
         <tr>
           <td class="strain-name">Gorilla Glue #4</td>
-          
           <td class="thc">94.69%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">30</td>
           <td class="t1">$17.00</td>
           <td class="t2">$16.50</td>
           <td class="t3">$16.00</td>
           <td class="t4">$15.00</td>
-          <td class="case-t1">$510.00</td>
-          <td class="case-t2">$495.00</td>
-          <td class="case-t3">$480.00</td>
-          <td class="case-t4">$450.00</td>
-          <td class="stock">3048</td>
         </tr>
         <tr>
           <td class="strain-name">Laughing Buddha</td>
-          
           <td class="thc">90.52%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">30</td>
           <td class="t1">$17.00</td>
           <td class="t2">$16.50</td>
           <td class="t3">$16.00</td>
           <td class="t4">$15.00</td>
-          <td class="case-t1">$510.00</td>
-          <td class="case-t2">$495.00</td>
-          <td class="case-t3">$480.00</td>
-          <td class="case-t4">$450.00</td>
-          <td class="stock">4088</td>
         </tr>
         <tr>
           <td class="strain-name">NYC Diesel</td>
-          
           <td class="thc">88.14%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">30</td>
           <td class="t1">$17.00</td>
           <td class="t2">$16.50</td>
           <td class="t3">$16.00</td>
           <td class="t4">$15.00</td>
-          <td class="case-t1">$510.00</td>
-          <td class="case-t2">$495.00</td>
-          <td class="case-t3">$480.00</td>
-          <td class="case-t4">$450.00</td>
-          <td class="stock">761</td>
         </tr>
         <tr>
           <td class="strain-name">Super Sour Diesel</td>
-          
           <td class="thc">88.32%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">30</td>
           <td class="t1">$17.00</td>
           <td class="t2">$16.50</td>
           <td class="t3">$16.00</td>
           <td class="t4">$15.00</td>
-          <td class="case-t1">$510.00</td>
-          <td class="case-t2">$495.00</td>
-          <td class="case-t3">$480.00</td>
-          <td class="case-t4">$450.00</td>
-          <td class="stock">3486</td>
         </tr>
         <tr>
           <td class="strain-name">Tangie Dream</td>
-          
           <td class="thc">93.52%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">30</td>
           <td class="t1">$17.00</td>
           <td class="t2">$16.50</td>
           <td class="t3">$16.00</td>
           <td class="t4">$15.00</td>
-          <td class="case-t1">$510.00</td>
-          <td class="case-t2">$495.00</td>
-          <td class="case-t3">$480.00</td>
-          <td class="case-t4">$450.00</td>
-          <td class="stock">2543</td>
         </tr>
         </tbody>
       </table>
     </div>
     </div>
   </div>
-  <div class="tab-panel" id="tab-goodlyfe" style="--brand-color:#3a1a4a;--brand-accent:#b06eb0">
+  <div class="tab-panel" id="tab-goodlyfe">
     <div class="brand-header" style="background:#3a1a4a">
       <span class="brand-emoji">🔥</span>
       <div>
@@ -1261,157 +927,119 @@
       </div>
     </div>
     <div class="brand-body">
-      <p class="brand-desc">Premium flower infused with high-potency concentrate. THC regularly hits 35–52% — one of the strongest value propositions on the shelf at $6.25/unit T1.</p>
-      <h3 class="cat-title">Infused Pre-Rolls <span class="case-note">· case: 50 units</span></h3>
+      <p class="brand-desc">Premium flower infused with high-potency concentrate. THC regularly hits 35–52% — one of the strongest value propositions on the shelf.</p>
+      
     <div class="table-wrap">
       <table>
         <thead>
-          <tr class="header-top">
-            <th rowspan="2" class="strain-col">Strain</th>
-            
+          <tr>
+            <th class="strain-col">Product</th>
             <th>THC %</th>
-            <th colspan="4" class="group-header unit-group">Per Unit</th>
-            <th colspan="4" class="group-header case-group">Case / 50u</th>
-            <th rowspan="2" class="stock-col">Units<br>In Stock</th>
-          </tr>
-          <tr class="header-tiers">
-            <th class="t1">T1</th><th class="t2">T2</th><th class="t3">T3</th><th class="t4">T4</th>
-            <th class="case-t1">T1</th><th class="case-t2">T2</th><th class="case-t3">T3</th><th class="case-t4">T4</th>
+            <th>Grams</th>
+            <th>Units/<br>Case</th>
+            <th class="t1">T1</th>
+            <th class="t2">T2</th>
+            <th class="t3">T3</th>
+            <th class="t4">T4</th>
           </tr>
         </thead>
         <tbody>
         <tr>
           <td class="strain-name">24K Gold Punch</td>
-          
           <td class="thc">35.38%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">50</td>
           <td class="t1">$6.25</td>
           <td class="t2">$6.00</td>
           <td class="t3">$5.75</td>
           <td class="t4">$5.50</td>
-          <td class="case-t1">$312.50</td>
-          <td class="case-t2">$300.00</td>
-          <td class="case-t3">$287.50</td>
-          <td class="case-t4">$275.00</td>
-          <td class="stock">6860</td>
         </tr>
         <tr>
           <td class="strain-name">Blueberry Haze</td>
-          
           <td class="thc">39.37%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">50</td>
           <td class="t1">$6.25</td>
           <td class="t2">$6.00</td>
           <td class="t3">$5.75</td>
           <td class="t4">$5.50</td>
-          <td class="case-t1">$312.50</td>
-          <td class="case-t2">$300.00</td>
-          <td class="case-t3">$287.50</td>
-          <td class="case-t4">$275.00</td>
-          <td class="stock">3138</td>
         </tr>
         <tr>
           <td class="strain-name">Lychee Dream</td>
-          
           <td class="thc">49.05%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">50</td>
           <td class="t1">$6.25</td>
           <td class="t2">$6.00</td>
           <td class="t3">$5.75</td>
           <td class="t4">$5.50</td>
-          <td class="case-t1">$312.50</td>
-          <td class="case-t2">$300.00</td>
-          <td class="case-t3">$287.50</td>
-          <td class="case-t4">$275.00</td>
-          <td class="stock">12619</td>
         </tr>
         <tr>
           <td class="strain-name">Mango Kush</td>
-          
           <td class="thc">38.36%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">50</td>
           <td class="t1">$6.25</td>
           <td class="t2">$6.00</td>
           <td class="t3">$5.75</td>
           <td class="t4">$5.50</td>
-          <td class="case-t1">$312.50</td>
-          <td class="case-t2">$300.00</td>
-          <td class="case-t3">$287.50</td>
-          <td class="case-t4">$275.00</td>
-          <td class="stock">5695</td>
         </tr>
         <tr>
           <td class="strain-name">Papaya Punch</td>
-          
           <td class="thc">37.28%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">50</td>
           <td class="t1">$6.25</td>
           <td class="t2">$6.00</td>
           <td class="t3">$5.75</td>
           <td class="t4">$5.50</td>
-          <td class="case-t1">$312.50</td>
-          <td class="case-t2">$300.00</td>
-          <td class="case-t3">$287.50</td>
-          <td class="case-t4">$275.00</td>
-          <td class="stock">6889</td>
         </tr>
         <tr>
           <td class="strain-name">Raspberry Kush</td>
-          
           <td class="thc">47.59%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">50</td>
           <td class="t1">$6.25</td>
           <td class="t2">$6.00</td>
           <td class="t3">$5.75</td>
           <td class="t4">$5.50</td>
-          <td class="case-t1">$312.50</td>
-          <td class="case-t2">$300.00</td>
-          <td class="case-t3">$287.50</td>
-          <td class="case-t4">$275.00</td>
-          <td class="stock">8900</td>
         </tr>
         <tr>
           <td class="strain-name">Sour Diesel</td>
-          
           <td class="thc">46.94%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">50</td>
           <td class="t1">$6.25</td>
           <td class="t2">$6.00</td>
           <td class="t3">$5.75</td>
           <td class="t4">$5.50</td>
-          <td class="case-t1">$312.50</td>
-          <td class="case-t2">$300.00</td>
-          <td class="case-t3">$287.50</td>
-          <td class="case-t4">$275.00</td>
-          <td class="stock">5892</td>
         </tr>
         <tr>
           <td class="strain-name">Unicorn Piss</td>
-          
           <td class="thc">52.49%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">50</td>
           <td class="t1">$6.25</td>
           <td class="t2">$6.00</td>
           <td class="t3">$5.75</td>
           <td class="t4">$5.50</td>
-          <td class="case-t1">$312.50</td>
-          <td class="case-t2">$300.00</td>
-          <td class="case-t3">$287.50</td>
-          <td class="case-t4">$275.00</td>
-          <td class="stock">5349</td>
         </tr>
         <tr>
           <td class="strain-name">Watermelon Z</td>
-          
           <td class="thc">40.86%</td>
+          <td class="grams">1g</td>
+          <td class="case-qty">50</td>
           <td class="t1">$6.25</td>
           <td class="t2">$6.00</td>
           <td class="t3">$5.75</td>
           <td class="t4">$5.50</td>
-          <td class="case-t1">$312.50</td>
-          <td class="case-t2">$300.00</td>
-          <td class="case-t3">$287.50</td>
-          <td class="case-t4">$275.00</td>
-          <td class="stock">4616</td>
         </tr>
         </tbody>
       </table>
     </div>
     </div>
   </div>
-  <div class="tab-panel" id="tab-choclit" style="--brand-color:#3d1f00;--brand-accent:#c47a2b">
+  <div class="tab-panel" id="tab-choclit">
     <div class="brand-header" style="background:#3d1f00">
       <span class="brand-emoji">🍫</span>
       <div>
@@ -1420,94 +1048,52 @@
       </div>
     </div>
     <div class="brand-body">
-      <p class="brand-desc">Consistent 100mg dosing, premium ingredients, gifting-ready presentation. A natural upsell at checkout and a strong performer in display cases.</p>
-      <h3 class="cat-title">Chocolate Bars <span class="case-note">· case: 25 units</span></h3>
+      <p class="brand-desc">Consistent 100mg dosing, premium ingredients, gifting-ready presentation. A natural upsell at checkout.</p>
+      
     <div class="table-wrap">
       <table>
         <thead>
-          <tr class="header-top">
-            <th rowspan="2" class="strain-col">Strain</th>
+          <tr>
+            <th class="strain-col">Product</th>
             
-            
-            <th colspan="4" class="group-header unit-group">Per Unit</th>
-            <th colspan="4" class="group-header case-group">Case / 25u</th>
-            <th rowspan="2" class="stock-col">Units<br>In Stock</th>
-          </tr>
-          <tr class="header-tiers">
-            <th class="t1">T1</th><th class="t2">T2</th><th class="t3">T3</th><th class="t4">T4</th>
-            <th class="case-t1">T1</th><th class="case-t2">T2</th><th class="case-t3">T3</th><th class="case-t4">T4</th>
+            <th>Grams</th>
+            <th>Units/<br>Case</th>
+            <th class="t1">T1</th>
+            <th class="t2">T2</th>
+            <th class="t3">T3</th>
+            <th class="t4">T4</th>
           </tr>
         </thead>
         <tbody>
         <tr>
           <td class="strain-name">Crispy Rice Crunchies</td>
           
-          
+          <td class="grams">100mg</td>
+          <td class="case-qty">25</td>
           <td class="t1">$10.75</td>
           <td class="t2">$10.00</td>
           <td class="t3">$9.25</td>
           <td class="t4">$8.50</td>
-          <td class="case-t1">$268.75</td>
-          <td class="case-t2">$250.00</td>
-          <td class="case-t3">$231.25</td>
-          <td class="case-t4">$212.50</td>
-          <td class="stock">1339</td>
         </tr>
         <tr>
           <td class="strain-name">English Toffee Bits</td>
           
-          
+          <td class="grams">100mg</td>
+          <td class="case-qty">25</td>
           <td class="t1">$10.75</td>
           <td class="t2">$10.00</td>
           <td class="t3">$9.25</td>
           <td class="t4">$8.50</td>
-          <td class="case-t1">$268.75</td>
-          <td class="case-t2">$250.00</td>
-          <td class="case-t3">$231.25</td>
-          <td class="case-t4">$212.50</td>
-          <td class="stock">1814</td>
         </tr>
         <tr>
           <td class="strain-name">Peanut Butter Breath</td>
           
-          
+          <td class="grams">1g</td>
+          <td class="case-qty">25</td>
           <td class="t1">$10.75</td>
           <td class="t2">$10.00</td>
           <td class="t3">$9.25</td>
           <td class="t4">$8.50</td>
-          <td class="case-t1">$268.75</td>
-          <td class="case-t2">$250.00</td>
-          <td class="case-t3">$231.25</td>
-          <td class="case-t4">$212.50</td>
-          <td class="stock">4195</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Peanut Butter Filling</td>
-          
-          
-          <td class="t1">$10.75</td>
-          <td class="t2">$10.00</td>
-          <td class="t3">$9.25</td>
-          <td class="t4">$8.50</td>
-          <td class="case-t1">$268.75</td>
-          <td class="case-t2">$250.00</td>
-          <td class="case-t3">$231.25</td>
-          <td class="case-t4">$212.50</td>
-          <td class="stock">869</td>
-        </tr>
-        <tr>
-          <td class="strain-name">Peanut Butter Filling</td>
-          
-          
-          <td class="t1">$10.75</td>
-          <td class="t2">$10.00</td>
-          <td class="t3">$9.25</td>
-          <td class="t4">$8.50</td>
-          <td class="case-t1">$268.75</td>
-          <td class="case-t2">$250.00</td>
-          <td class="case-t3">$231.25</td>
-          <td class="case-t4">$212.50</td>
-          <td class="stock">2145</td>
         </tr>
         </tbody>
       </table>
@@ -1519,8 +1105,8 @@
   <div class="cta-title">Ready to place an order?</div>
   <div class="cta-sub">Reach out to Bernard directly — we'll build the right package for your store.</div>
   <div class="cta-buttons">
-    <a class="cta-btn cta-primary" href="https://app.leaflink.com/order/" target="_blank">Order on LeafLink</a>
-    <a class="cta-btn cta-secondary" href="mailto:bernard@sapphirefarms.com">Contact Bernard</a>
+    <a class="cta-btn cta-primary"    href="https://app.leaflink.com/order/" target="_blank">Order on LeafLink</a>
+    <a class="cta-btn cta-secondary"  href="mailto:bernard@sapphirefarms.com">Contact Bernard</a>
   </div>
 </div>
 
@@ -1535,7 +1121,6 @@ function showTab(brand) {
   if (panel) panel.classList.add('active');
   if (btn)   btn.classList.add('active');
 }
-// Activate first tab on load
 document.addEventListener('DOMContentLoaded', function() {
   var first = document.querySelector('.tab-bar button');
   if (first) first.click();
